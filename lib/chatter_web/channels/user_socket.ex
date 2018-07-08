@@ -1,5 +1,6 @@
 defmodule ChatterWeb.UserSocket do
   use Phoenix.Socket
+  require Logger
 
   ## Channels
   channel "room:*", ChatterWeb.RoomChannel
@@ -21,9 +22,7 @@ defmodule ChatterWeb.UserSocket do
   # performing token verification on connect.
   def connect( %{"user" => user} , socket) do
     conn = assign(socket, :user, user)
-    IO.puts " New socket Connection :: #{user}  :: "
-    IO.inspect conn
-    IO.puts "====================================="
+    Logger.info ":: Socket Connection for #{user}::", ansi_color: :green
     {:ok, conn}
   end
 
