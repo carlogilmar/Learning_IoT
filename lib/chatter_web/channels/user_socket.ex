@@ -20,7 +20,11 @@ defmodule ChatterWeb.UserSocket do
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
   def connect( %{"user" => user} , socket) do
-    {:ok, assign(socket, :user, user)}
+    conn = assign(socket, :user, user)
+    IO.puts " New socket Connection :: #{user}  :: "
+    IO.inspect conn
+    IO.puts "====================================="
+    {:ok, conn}
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:
