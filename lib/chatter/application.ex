@@ -14,6 +14,9 @@ defmodule Chatter.Application do
       supervisor(ChatterWeb.Endpoint, []),
       # Start your own worker by calling: Chatter.Worker.start_link(arg1, arg2, arg3)
       # worker(Chatter.Worker, [arg1, arg2, arg3]),
+
+      # Add presence
+      supervisor(ChatterWeb.Presence, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
