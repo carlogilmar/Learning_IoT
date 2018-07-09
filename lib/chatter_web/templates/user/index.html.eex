@@ -4,7 +4,8 @@
 <%= for user <- @users do %>
   <li>
     <%= user.email %>
-    <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
+    <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs btn-primary" %>
+    <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs btn-info" %>
   </li>
 <% end %>
 </ul>
