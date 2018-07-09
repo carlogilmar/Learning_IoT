@@ -30,6 +30,7 @@ defmodule ChatterWeb.RoomChannel do
   end
 
   def handle_in("message:new", message, socket) do
+    Logger.info ":: New Message from #{socket.assigns.user} ::", ansi_color: :yellow
     broadcast! socket, "message:new:client", %{
       user: socket.assigns.user,
       body: message,
