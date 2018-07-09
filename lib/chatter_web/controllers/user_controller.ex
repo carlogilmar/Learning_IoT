@@ -67,4 +67,13 @@ defmodule ChatterWeb.UserController do
     end
   end
 
+  # Delete
+  def delete(conn, %{"id" => id}) do
+    user = Repo.get!(User, id)
+    Repo.delete!(user)
+    conn
+      |> put_flash(:danger, "User #{id} deleted !")
+      |> redirect(to: user_path(conn, :index) )
+  end
+
 end
