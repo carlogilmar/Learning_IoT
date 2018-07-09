@@ -3,7 +3,7 @@
 <ul>
 <%= for user <- @users do %>
   <li>
-    <h3> <%= user.email %> </h3>
+    <%= user.email %>
     <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
   </li>
 <% end %>
