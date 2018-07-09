@@ -6,6 +6,7 @@
     <%= user.email %>
     <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs btn-primary" %>
     <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs btn-info" %>
+    <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are u sure?"], class: "btn btn-default btn-xs btn-danger" %>
   </li>
 <% end %>
 </ul>
