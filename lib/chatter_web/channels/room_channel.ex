@@ -12,7 +12,6 @@ defmodule ChatterWeb.RoomChannel do
   end
 
   def handle_info(:after_join, socket) do
-
     Logger.info ":: New Connection Interaction ::", ansi_color: :green
     IO.inspect socket
 
@@ -28,6 +27,15 @@ defmodule ChatterWeb.RoomChannel do
     # presence_state lives in js app
     push socket, "presence_state", presence_list
     {:noreply , socket}
+  end
+
+  def handle_in("message:new", message, socket) do
+    broadcast! socket, "message:new", %{
+      user: socket.assigns.user,
+      body: message,
+      timestamp: :os.system_time(:milli_seconds)
+    }
+    {:noreply, socket}
   end
 
 end
