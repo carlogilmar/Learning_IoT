@@ -52,3 +52,29 @@ let render = (presences) => {
     .join("")
 }
 
+// Sending messages
+let messageInput = document.getElementById("newMessage")
+messageInput.addEventListener("keypress", (e) => {
+  console.log("Sending message!")
+  if(e.keyCode == 13 && messageInput.value != ""){
+    room.push("message:new", messageInput.value)
+    messageInput.value = ""
+  }
+})
+
+// Update the message list
+let messageList = document.getElementById("messageList")
+let renderMessage = (message) => {
+  let messageElement = document.createElement("li")
+  messageElement.innerHTML = `
+    <b> ${message.user} </b>
+    <i> ${formatedTimestamp(message.timestamp)}</i>
+    <p> ${message.body} </p>
+    `
+  messageList.appendChild(messageElement)
+  messageList.scrollTop = messageList.scrollHeight
+}
+
+room.on("message:new", message => renderMessage(message))
+
+
