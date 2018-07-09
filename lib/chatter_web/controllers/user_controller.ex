@@ -21,4 +21,10 @@ defmodule ChatterWeb.UserController do
     render(conn, "show.html", user: user)
   end
 
+  def new(conn, _params) do
+    Logger.info ":: New User ::", ansi_color: :yellow
+    changeset = User.changeset(%User{}, %{})
+    render(conn, "new.html", changeset: changeset)
+  end
+
 end
