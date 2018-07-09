@@ -75,6 +75,6 @@ let renderMessage = (message) => {
   messageList.scrollTop = messageList.scrollHeight
 }
 
-room.on("message:new", message => renderMessage(message))
+room.on("message:new:client", message => renderMessage(message))
 
 

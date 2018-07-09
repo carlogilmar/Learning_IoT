@@ -30,7 +30,7 @@ defmodule ChatterWeb.RoomChannel do
   end
 
   def handle_in("message:new", message, socket) do
-    broadcast! socket, "message:new", %{
+    broadcast! socket, "message:new:client", %{
       user: socket.assigns.user,
       body: message,
       timestamp: :os.system_time(:milli_seconds)
