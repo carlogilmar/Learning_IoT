@@ -22,9 +22,25 @@ defmodule ChatterWeb.UserController do
   end
 
   def new(conn, _params) do
-    Logger.info ":: New User ::", ansi_color: :yellow
+    Logger.info ":: Form for New User ::", ansi_color: :yellow
     changeset = User.changeset(%User{}, %{})
     render(conn, "new.html", changeset: changeset)
+  end
+
+  def create(conn, %{"user" => user_params}) do
+    Logger.info ":: Creating a new user ::", ansi_color: :yellow
+    IO.inspect user_params
+    changeset = User.changeset(%User{}, user_params)
+    IO.inspect changeset
+    repo_result = Repo.insert(changeset)
+    case repo_result do
+      {:ok, _user} ->
+        conn
+          |> put_flash(:info, "::: User Created successfully! :::")
+          |> redirect(to: user_path(conn, :index) )
+      {:error, changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
   end
 
 end
