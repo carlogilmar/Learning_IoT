@@ -4,12 +4,21 @@ defmodule ChatterWeb.UserController do
 
   alias Chatter.User
   alias Chatter.Repo
+  require Logger
 
   def index(conn, _params) do
     # Getting all users from database
     users = Repo.all(User)
     # render a send a page with params
     render(conn, "index.html", users: users)
+  end
+
+  def show( conn, %{"id" => id} ) do
+    Logger.info ":: Show User ::", ansi_color: :red
+    IO.inspect conn
+    user = Repo.get!( User, id )
+    IO.inspect user
+    render(conn, "show.html", user: user)
   end
 
 end
