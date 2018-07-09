@@ -1,0 +1,14 @@
+<h2> List Of Users Availables </h2>
+
+<ul>
+<%= for user <- @users do %>
+  <li>
+    <h3> <%= user.email %> </h3>
+    <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
+  </li>
+<% end %>
+</ul>
+
+<hr>
+
+<%= link "New user", to: user_path(@conn, :new) %>
