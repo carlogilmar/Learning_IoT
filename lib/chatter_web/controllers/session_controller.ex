@@ -22,4 +22,10 @@ defmodule ChatterWeb.SessionController do
     end
   end
 
+  def delete(conn, _) do
+    conn
+    |> Guardian.Plug.sign_out
+    |> redirect(to: "/")
+  end
+
 end
