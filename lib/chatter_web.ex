@@ -40,6 +40,7 @@ defmodule ChatterWeb do
       import ChatterWeb.Router.Helpers
       import ChatterWeb.ErrorHelpers
       import ChatterWeb.Gettext
+      import ChatterWeb.ViewHelper
     end
   end
 
