@@ -10,6 +10,7 @@ defmodule ChatterWeb.UserController do
   def index(conn, _params) do
     # Getting all users from database
     users = Repo.all(User)
+    IO.inspect users
     # render a send a page with params
     render(conn, "index.html", users: users)
   end
@@ -32,9 +33,7 @@ defmodule ChatterWeb.UserController do
   # Creating action
   def create(conn, %{"user" => user_params}) do
     Logger.info ":: Creating a new user ::", ansi_color: :yellow
-    IO.inspect user_params
-    changeset = User.changeset(%User{}, user_params)
-    IO.inspect changeset
+    changeset = User.reg_changeset(%User{}, user_params)
     repo_result = Repo.insert(changeset)
     case repo_result do
       {:ok, _user} ->
@@ -49,7 +48,7 @@ defmodule ChatterWeb.UserController do
   # Update view
   def edit(conn, %{"id" => id}) do
     user = Repo.get!(User, id)
-    changeset = User.changeset(user, %{})
+    changeset = User.reg_changeset(user, %{})
     render(conn, "edit.html", user: user, changeset: changeset)
   end
 
