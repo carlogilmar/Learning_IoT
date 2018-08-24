@@ -6,8 +6,8 @@
 use Mix.Config
 
 # General application configuration
-config :chatter,
-  ecto_repos: [Chatter.Repo]
+#config :chatter,
+#  ecto_repos: [Chatter.Repo]
 
 # Configures the endpoint
 config :chatter, ChatterWeb.Endpoint,
