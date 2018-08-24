@@ -47,7 +47,24 @@ defmodule ChatterWeb.RoomChannel do
     manage_led( message, uart )
   end
 
-  def manage_led("1", pid), do: Nerves.UART.write(pid, "1")
+  def manage_led("1", pid) do
+    IO.puts "Prende"
+    Nerves.UART.write(pid, "1")
+    :timer.sleep(500);
+    IO.puts "Apaga"
+    Nerves.UART.write(pid, "0")
+    :timer.sleep(500);
+    IO.puts "Prende"
+    Nerves.UART.write(pid, "1")
+    :timer.sleep(500);
+    IO.puts "Apaga"
+    Nerves.UART.write(pid, "0")
+    :timer.sleep(500);
+    IO.puts "Prende"
+    Nerves.UART.write(pid, "1")
+    :timer.sleep(500);
+  end
+
   def manage_led(_, pid), do: Nerves.UART.write(pid, "0")
 
 end
