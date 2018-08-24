@@ -31,5 +31,6 @@
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.14/howler.min.js"></script>
   </body>
 </html>
