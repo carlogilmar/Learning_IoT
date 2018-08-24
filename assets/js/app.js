@@ -22,7 +22,9 @@ room.on("presence_diff", diff => {
   render(presences)
 })
 room.join()
-  .receive("ok", resp => { console.log("Joined to Example Channel!!", resp) })
+  .receive("ok", resp => {
+    console.log("Joined to Example Channel!!", resp)
+  })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 // Getting the list of users
@@ -65,6 +67,15 @@ messageInput.addEventListener("keypress", (e) => {
 // Update the message list
 let messageList = document.getElementById("messageList")
 let renderMessage = (message) => {
+  console.log("Llego un nuevo mensaje!!");
+  let sound2 = new Howl({
+    src: ['http://www.foxysite.de/StarWars/LUKE04.WAV'],
+    autoplay: true,
+    loop: false,
+    volume: 0.5,
+    onend: function() {
+      console.log('Finished!');
+    } });
   let messageElement = document.createElement("li")
   messageElement.innerHTML = `
     <b> ${message.user} </b>
