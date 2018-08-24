@@ -24,6 +24,14 @@ room.on("presence_diff", diff => {
 room.join()
   .receive("ok", resp => {
     console.log("Joined to Example Channel!!", resp)
+    let sound2 = new Howl({
+      src: ['http://carlogilmar.me/uno.m4a'],
+      autoplay: true,
+      loop: true,
+      volume: 0.5,
+      onend: function() {
+        console.log('Finished!');
+      } });
   })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
@@ -47,10 +55,10 @@ let render = (presences) => {
   userList.innerHTML = Presence.list(presences, listBy)
     .map(presence => `
       <li>
-        <b>${presence.user}</b>
-        <br><small>online since ${presence.onlineAt}</small>
+      <b>${presence.user}</b>
+      <br><small>online since ${presence.onlineAt}</small>
       </li>
-    `)
+      `)
     .join("")
 }
 
@@ -69,7 +77,7 @@ let messageList = document.getElementById("messageList")
 let renderMessage = (message) => {
   console.log("Llego un nuevo mensaje!!");
   let sound2 = new Howl({
-    src: ['http://www.foxysite.de/StarWars/LUKE04.WAV'],
+    src: ['http://carlogilmar.me/tres.m4a'],
     autoplay: true,
     loop: false,
     volume: 0.5,
