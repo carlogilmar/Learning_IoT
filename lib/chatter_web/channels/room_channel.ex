@@ -35,7 +35,19 @@ defmodule ChatterWeb.RoomChannel do
       body: message,
       timestamp: :os.system_time(:milli_seconds)
     }
+    send_to_arduino( message )
     {:noreply, socket}
   end
+
+  def send_to_arduino( message ) do
+    IO.puts "Enviando al arduino..."
+    uart = Chatter.Uart.get_uart()
+    IO.inspect uart
+    IO.puts "Enviando..."
+    manage_led( message, uart )
+  end
+
+  def manage_led("1", pid), do: Nerves.UART.write(pid, "1")
+  def manage_led(_, pid), do: Nerves.UART.write(pid, "0")
 
 end
