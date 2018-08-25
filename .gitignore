@@ -1,27 +1,9 @@
-# App artifacts
-/_build
-/db
-/deps
-/*.ez
-
-# Generated on crash by the VM
-erl_crash.dump
-
-# Generated on crash by NPM
-npm-debug.log
-
-# Static artifacts
-/assets/node_modules
-
-# Since we are building assets from assets/,
-# we ignore priv/static. You may want to comment
-# this depending on your deployment strategy.
-/priv/static/
-
-# Files matching config/*.secret.exs pattern contain sensitive
-# data and you should not commit them into version control.
-#
-# Alternatively, you may comment the line below and commit the
-# secrets files as long as you replace their contents by environment
-# variables.
-/config/*.secret.exs
+phoenix_app/_build
+phoenix_app/db
+phoenix_app/deps
+phoenix_app/*.ez
+phoenix_app/erl_crash.dump
+phoenix_app/npm-debug.log
+phoenix_app/assets/node_modules
+phoenix_app/priv/static/
+phoenix_app/config/*.secret.exs
