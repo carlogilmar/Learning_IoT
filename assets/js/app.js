@@ -18,6 +18,7 @@ room.on("presence_state", state => {
 room.on("presence_diff", diff => {
   console.log("==================== > diff")
   console.log(diff)
+  room.push("room::sync", "Alguien vino, o alguien se fue")
   presences = Presence.syncDiff( presences, diff)
   render(presences)
 })
