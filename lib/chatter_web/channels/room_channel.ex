@@ -41,6 +41,10 @@ defmodule ChatterWeb.RoomChannel do
     {:noreply, socket}
   end
 
+  def send_message_from_terminal() do
+    ChatterWeb.Endpoint.broadcast "room:lobby", "message:new:client", %{body: "hola perros"}
+  end
+
   def send_to_arduino( message ) do
     IO.puts "Enviando al arduino..."
     uart = Chatter.Uart.get_uart()
