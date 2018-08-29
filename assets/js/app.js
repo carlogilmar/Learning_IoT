@@ -29,7 +29,7 @@ room.join()
       src: ['http://carlogilmar.me/uno.m4a'],
       autoplay: true,
       loop: true,
-      volume: 0.3,
+      volume: 0.0,
       onend: function() {
         console.log('Finished!');
       } });
@@ -77,9 +77,35 @@ messageInput.addEventListener("keypress", (e) => {
 let messageList = document.getElementById("messageList")
 let renderMessage = (message) => {
   console.log("Llego un nuevo mensaje!!");
+
+
+  function playSong( song ) {
+    let sound2 = new Howl({
+      //src: ['http://carlogilmar.me/uno.m4a'],
+      src: [ song ],
+      autoplay: true,
+      loop: true,
+      volume: 0.3,
+      onend: function() {
+        console.log('Finished!');
+      } });
+  }
+
   if( message.body === "1"){
+
    console.log("Prende!!")
-   Howler.volume(1)
+   //Howler.volume(1)
+    if( user === "uno "){
+      console.log(" es el uno")
+      playSong( 'http://carlogilmar.me/uno.m4a' )
+    } else if( user === "dos "){
+      console.log("es el dos")
+      playSong( 'http://carlogilmar.me/dos.m4a' )
+    } else if( user === "tres "){
+      console.log("es el tres")
+      playSong( 'http://carlogilmar.me/tres.m4a' )
+    }
+
   } else if ( message.body === "0"){
    console.log("Apaga!!")
    Howler.volume(0)
