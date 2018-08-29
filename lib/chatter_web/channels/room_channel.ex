@@ -41,8 +41,8 @@ defmodule ChatterWeb.RoomChannel do
     {:noreply, socket}
   end
 
-  def send_message_from_terminal() do
-    ChatterWeb.Endpoint.broadcast "room:lobby", "message:new:client", %{body: "hola perros"}
+  def send_message_from_terminal(body) do
+    ChatterWeb.Endpoint.broadcast "room:lobby", "message:new:client", %{body: body}
   end
 
   def send_to_arduino( message ) do
