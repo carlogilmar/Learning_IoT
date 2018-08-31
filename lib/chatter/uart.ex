@@ -11,6 +11,10 @@ defmodule Chatter.Uart do
 		GenServer.call( __MODULE__, :get_uart )
 	end
 
+  def read_uart() do
+    GenServer.call( __MODULE__, :read_uart )
+  end
+
 	# Server
 	def init(_) do
 		IO.puts "Getting uart pid"
@@ -25,5 +29,17 @@ defmodule Chatter.Uart do
 		# state is the uart_pid
 		{:reply, state, state}
 	end
+
+	def handle_call( :read_uart, _, state ) do
+    {_, pid} = state
+    IO.inspect state
+    IO.puts "============"
+    IO.inspect pid
+    IO.puts " UART   R E A D I N G"
+    sm = Nerves.UART.read( pid, 60000 )
+    IO.inspect sm
+		# state is the uart_pid
+		{:reply, state, state}
+  end
 
 end
