@@ -11,6 +11,7 @@ defmodule Chatter.Application do
       supervisor(ChatterWeb.Endpoint, []),
       supervisor(ChatterWeb.Presence, []),
 			supervisor(Chatter.Uart, []),
+			supervisor(Chatter.Director, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
