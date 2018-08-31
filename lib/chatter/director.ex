@@ -26,8 +26,18 @@ defmodule Chatter.Director do
   end
 
   def handle_call( :suscribe, _, {:counter, counter} ) do
-    song_for_assign = Enum.at( @songs, counter )
-    {:reply, {counter, song_for_assign}, {:counter, counter+1}}
+    { counter, song, next_counter } = suscribe_song( counter )
+    {:reply, {counter, song}, {:counter, next_counter}}
+  end
+
+  def suscribe_song( 8 ) do
+    [ first_song | _ ] = @songs
+    { 0, first_song, 1 }
+  end
+
+  def suscribe_song( current_counter ) do
+    song = Enum.at( @songs, current_counter)
+    { current_counter, song, current_counter + 1 }
   end
 
 end
