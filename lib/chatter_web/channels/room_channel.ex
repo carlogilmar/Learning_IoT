@@ -8,7 +8,8 @@ defmodule ChatterWeb.RoomChannel do
   def join("room:lobby", _, socket) do
     Logger.info ":: Join to room:lobby ::", ansi_color: :green
     { _, current_user} = Director.suscribe()
-    send_to_arduino("2")
+    uart = Chatter.Uart.get_uart()
+    Nerves.UART.write(uart, "2")
     send self(), :after_join
     {:ok, current_user, socket}
   end
