@@ -1647,151 +1647,55 @@ require("phoenix_html");
 var _phoenix = require("phoenix");
 
 // Making the socket connection
-var user = document.getElementById("user").innerText;
-var socket = new _phoenix.Socket("/socket", { params: { user: user } });
+var socket = new _phoenix.Socket("/socket", { params: { user: "phoenix" } });
 socket.connect();
 
 // Join and open the socket channels
 var room = socket.channel("room:lobby");
-room.on("presence_state", function (state) {
-  console.log("==================== > presence");
-  console.log(state);
-  presences = _phoenix.Presence.syncState(presences, state);
-  render(presences);
-});
-room.on("presence_diff", function (diff) {
-  console.log("==================== > diff");
-  console.log(diff);
-  room.push("room::sync", "Alguien vino, o alguien se fue");
-  presences = _phoenix.Presence.syncDiff(presences, diff);
-  render(presences);
-});
+var song = " Phoenix ";
+
+// Connect to the channel
 room.join().receive("ok", function (resp) {
-  console.log("Joined to Example Channel!!", resp);
-  var sound2 = new Howl({
-    src: ['http://carlogilmar.me/uno.m4a'],
-    autoplay: true,
-    loop: true,
-    volume: 0.0,
-    onend: function onend() {
-      console.log('Finished!');
-    } });
+  console.log("C O N E C T A D O", resp);
+  var current_user = document.getElementById("current_user");
+  current_user.innerText = resp.category;
+  var current_song = document.getElementById("current_song");
+  current_song.innerText = resp.song;
 }).receive("error", function (resp) {
   console.log("Unable to join", resp);
 });
 
-// Getting the list of users
-var presences = {};
-
-var formatedTimestamp = function formatedTimestamp(Ts) {
-  var date = new Date(Ts);
-  return date.toLocaleString();
-};
-
-var listBy = function listBy(user, _ref) {
-  var metas = _ref.metas;
-
-  return {
-    user: user,
-    onlineAt: formatedTimestamp(metas[0].online_at)
-  };
-};
-
-var userList = document.getElementById("userList");
-var render = function render(presences) {
-  userList.innerHTML = _phoenix.Presence.list(presences, listBy).map(function (presence) {
-    return "\n      <li>\n      <b>" + presence.user + "</b>\n      <br><small>online since " + presence.onlineAt + "</small>\n      </li>\n      ";
-  }).join("");
-};
-
-// Sending messages
-var messageInput = document.getElementById("newMessage");
-messageInput.addEventListener("keypress", function (e) {
-  console.log("Sending message!");
-  if (e.keyCode == 13 && messageInput.value != "") {
-    room.push("message:new", messageInput.value);
-    messageInput.value = "";
-  }
-});
-
-// Update the message list
-var messageList = document.getElementById("messageList");
 var renderMessage = function renderMessage(message) {
-  console.log("Llego un nuevo mensaje!!");
-
-  function playSong(song) {
-    var sound2 = new Howl({
-      //src: ['http://carlogilmar.me/uno.m4a'],
-      src: [song],
-      autoplay: true,
-      loop: true,
-      volume: 0.3,
-      onend: function onend() {
-        console.log('Finished!');
-      } });
-  }
-
-  if (message.body === "1") {
-
-    console.log("Prende!!");
-    //Howler.volume(1)
-    if (user === "uno ") {
-      console.log(" es el uno");
-      playSong('http://carlogilmar.me/uno.m4a');
-    } else if (user === "dos ") {
-      console.log("es el dos");
-      playSong('http://carlogilmar.me/dos.m4a');
-    } else if (user === "tres ") {
-      console.log("es el tres");
-      playSong('http://carlogilmar.me/tres.m4a');
-    }
-  } else if (message.body === "0") {
-    console.log("Apaga!!");
+  if (message.body === "start") {
+    var current_song = document.getElementById("current_song").innerText;
+    playSong(current_song);
+  } else if (message.body === "stop") {
     Howler.volume(0);
+  } else if (message.body === "play") {
+    Howler.volume(1);
   } else if (message.body === "reload") {
-    console.log("reload");
     location.reload();
+  } else {
+    // Play only
+    var user = document.getElementById("current_user").innerText;
+    if (user === message.body) {
+      Howler.volume(1);
+    }
   }
-  //let sound2 = new Howl({
-  //  src: ['http://carlogilmar.me/tres.m4a'],
-  //  autoplay: true,
-  //  loop: false,
-  //  volume: 0.5,
-  //  onend: function() {
-  //    console.log('Finished!');
-  //  } });
-  var messageElement = document.createElement("li");
-  messageElement.innerHTML = "\n    <b> " + message.user + " </b>\n    <i> " + formatedTimestamp(message.timestamp) + "</i>\n    <p> " + message.body + " </p>\n    ";
-  messageList.appendChild(messageElement);
-  messageList.scrollTop = messageList.scrollHeight;
 };
+
+function playSong(song) {
+  var sound2 = new Howl({
+    src: [song],
+    autoplay: true,
+    loop: true,
+    volume: 1
+  });
+}
 
 room.on("message:new:client", function (message) {
   return renderMessage(message);
 });
-});
-
-;require.register("js/socket.js", function(exports, require, module) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _phoenix = require("phoenix");
-
-var socket = new _phoenix.Socket("/socket", { params: { token: window.userToken } });
-
-socket.connect();
-
-var channel = socket.channel("topic:subtopic", {});
-channel.join().receive("ok", function (resp) {
-  console.log("Joined successfully", resp);
-}).receive("error", function (resp) {
-  console.log("Unable to join", resp);
-});
-
-exports.default = socket;
 });
 
 ;require.alias("phoenix/priv/static/phoenix.js", "phoenix");
