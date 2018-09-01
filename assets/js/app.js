@@ -28,12 +28,13 @@ room.join()
 
 let renderMessage = (message) => {
   console.log( message.body);
-  if( message.body === "1"){
+  if( message.body === "0"){
     let current_song= document.getElementById("current_song").innerText;
     playSong( current_song );
-  } else if ( message.body === "0"){
-    console.log("Apaga!!")
+  } else if ( message.body === "1"){
     Howler.volume(0)
+  } else if( message.body === "2") {
+    Howler.volume(1)
   } else if ( message.body === "reload"){
     location.reload();
   }
