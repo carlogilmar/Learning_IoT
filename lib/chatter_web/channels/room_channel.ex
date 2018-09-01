@@ -2,25 +2,21 @@ defmodule ChatterWeb.RoomChannel do
 
   use ChatterWeb, :channel
   alias ChatterWeb.Presence
+  alias Chatter.Director
   require Logger
 
   def join("room:lobby", _, socket) do
     Logger.info ":: Join to room:lobby ::", ansi_color: :green
+    { _, current_user} = Director.suscribe()
     send self(), :after_join
-    {:ok, socket}
+    {:ok, current_user, socket}
   end
 
   def handle_info(:after_join, socket) do
-    # socker.assigns is a map: %{user: "Carlo2 "}
-    Logger.info ":: Updating Presence track with the new user ::"
-    Presence.track( socket, socket.assigns.user, %{
+    Presence.track( socket, "user", %{
       online_at: :os.system_time(:milli_seconds)
     })
-
     presence_list = Presence.list(socket)
-    IO.puts "================= after join =============="
-    IO.inspect presence_list
-
     # presence_state lives in js app
     push socket, "presence_state", presence_list
     {:noreply , socket}
