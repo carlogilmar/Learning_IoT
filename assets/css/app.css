@@ -1,1 +1,218 @@
 /* This file is for your main application css. */
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}
+
+/* Animation */
+@-webkit-keyframes move {
+  100% {
+    -webkit-transform: rotate(var(--angle)) translate(0, 40px);
+            transform: rotate(var(--angle)) translate(0, 40px);
+  }
+}
+@keyframes move {
+  100% {
+    -webkit-transform: rotate(var(--angle)) translate(0, 40px);
+            transform: rotate(var(--angle)) translate(0, 40px);
+  }
+}
+.wave {
+  -webkit-transform-origin: 500px 500px;
+          transform-origin: 500px 500px;
+  opacity: 0.25;
+  -webkit-animation: move 1.5s linear infinite;
+          animation: move 1.5s linear infinite;
+  mix-blend-mode: screen;
+}
+.wave:nth-child(1) {
+  -webkit-animation-delay: -0.28125s;
+          animation-delay: -0.28125s;
+  fill: #ff6000;
+  --angle:22.5deg ;
+  -webkit-transform: rotate(22.5deg) translate(375px, 40px);
+          transform: rotate(22.5deg) translate(375px, 40px);
+}
+.wave:nth-child(2) {
+  -webkit-animation-delay: -0.5625s;
+          animation-delay: -0.5625s;
+  fill: #ffbf00;
+  --angle:45deg ;
+  -webkit-transform: rotate(45deg) translate(375px, 40px);
+          transform: rotate(45deg) translate(375px, 40px);
+}
+.wave:nth-child(3) {
+  -webkit-animation-delay: -0.84375s;
+          animation-delay: -0.84375s;
+  fill: #dfff00;
+  --angle:67.5deg ;
+  -webkit-transform: rotate(67.5deg) translate(375px, 40px);
+          transform: rotate(67.5deg) translate(375px, 40px);
+}
+.wave:nth-child(4) {
+  -webkit-animation-delay: -1.125s;
+          animation-delay: -1.125s;
+  fill: #80ff00;
+  --angle:90deg ;
+  -webkit-transform: rotate(90deg) translate(375px, 40px);
+          transform: rotate(90deg) translate(375px, 40px);
+}
+.wave:nth-child(5) {
+  -webkit-animation-delay: -1.40625s;
+          animation-delay: -1.40625s;
+  fill: #20ff00;
+  --angle:112.5deg ;
+  -webkit-transform: rotate(112.5deg) translate(375px, 40px);
+          transform: rotate(112.5deg) translate(375px, 40px);
+}
+.wave:nth-child(6) {
+  -webkit-animation-delay: -1.6875s;
+          animation-delay: -1.6875s;
+  fill: #00ff40;
+  --angle:135deg ;
+  -webkit-transform: rotate(135deg) translate(375px, 40px);
+          transform: rotate(135deg) translate(375px, 40px);
+}
+.wave:nth-child(7) {
+  -webkit-animation-delay: -1.96875s;
+          animation-delay: -1.96875s;
+  fill: #00ff9f;
+  --angle:157.5deg ;
+  -webkit-transform: rotate(157.5deg) translate(375px, 40px);
+          transform: rotate(157.5deg) translate(375px, 40px);
+}
+.wave:nth-child(8) {
+  -webkit-animation-delay: -2.25s;
+          animation-delay: -2.25s;
+  fill: cyan;
+  --angle:180deg ;
+  -webkit-transform: rotate(180deg) translate(375px, 40px);
+          transform: rotate(180deg) translate(375px, 40px);
+}
+.wave:nth-child(9) {
+  -webkit-animation-delay: -2.53125s;
+          animation-delay: -2.53125s;
+  fill: #009fff;
+  --angle:202.5deg ;
+  -webkit-transform: rotate(202.5deg) translate(375px, 40px);
+          transform: rotate(202.5deg) translate(375px, 40px);
+}
+.wave:nth-child(10) {
+  -webkit-animation-delay: -2.8125s;
+          animation-delay: -2.8125s;
+  fill: #0040ff;
+  --angle:225deg ;
+  -webkit-transform: rotate(225deg) translate(375px, 40px);
+          transform: rotate(225deg) translate(375px, 40px);
+}
+.wave:nth-child(11) {
+  -webkit-animation-delay: -3.09375s;
+          animation-delay: -3.09375s;
+  fill: #2000ff;
+  --angle:247.5deg ;
+  -webkit-transform: rotate(247.5deg) translate(375px, 40px);
+          transform: rotate(247.5deg) translate(375px, 40px);
+}
+.wave:nth-child(12) {
+  -webkit-animation-delay: -3.375s;
+          animation-delay: -3.375s;
+  fill: #8000ff;
+  --angle:270deg ;
+  -webkit-transform: rotate(270deg) translate(375px, 40px);
+          transform: rotate(270deg) translate(375px, 40px);
+}
+.wave:nth-child(13) {
+  -webkit-animation-delay: -3.65625s;
+          animation-delay: -3.65625s;
+  fill: #df00ff;
+  --angle:292.5deg ;
+  -webkit-transform: rotate(292.5deg) translate(375px, 40px);
+          transform: rotate(292.5deg) translate(375px, 40px);
+}
+.wave:nth-child(14) {
+  -webkit-animation-delay: -3.9375s;
+          animation-delay: -3.9375s;
+  fill: #ff00bf;
+  --angle:315deg ;
+  -webkit-transform: rotate(315deg) translate(375px, 40px);
+          transform: rotate(315deg) translate(375px, 40px);
+}
+.wave:nth-child(15) {
+  -webkit-animation-delay: -4.21875s;
+          animation-delay: -4.21875s;
+  fill: #ff0060;
+  --angle:337.5deg ;
+  -webkit-transform: rotate(337.5deg) translate(375px, 40px);
+          transform: rotate(337.5deg) translate(375px, 40px);
+}
+.wave:nth-child(16) {
+  -webkit-animation-delay: -4.5s;
+          animation-delay: -4.5s;
+  fill: red;
+  --angle:360deg ;
+  -webkit-transform: rotate(360deg) translate(375px, 40px);
+          transform: rotate(360deg) translate(375px, 40px);
+}
+
+.circle {
+  -webkit-transform-origin: 500px 500px;
+          transform-origin: 500px 500px;
+  -webkit-animation: rotate 24s linear infinite;
+          animation: rotate 24s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+/*Page Setup*/
+svg {
+  width: 100vw;
+  height: 80vh;
+}
