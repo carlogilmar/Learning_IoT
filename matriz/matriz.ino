@@ -75,14 +75,16 @@ void loop(){
   
   if (key){
     Serial.println(key);
-    if( key == 49 ) { playMessage(); }
-    if( key == 50 ) { playHi(); }
-    if( key == 51 ) { playSong1(); }
   }
   
   if( valueAnalog < 500 ){
+    // luz apagada
+    //Serial.println("1");
     playPacman();
-  } 
+  } else {
+    // luz encendida 
+    //Serial.println("0"); 
+  }
 
 }
 
