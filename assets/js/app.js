@@ -13,12 +13,6 @@ var song = " Phoenix ";
 room.join()
   .receive("ok", resp => {
     console.log("C O N E C T A D O", resp)
-    //let sound2 = new Howl({
-    //  src: [ resp.song ],
-    //  autoplay: true,
-    //  loop: true,
-    //  volume: 0.01,
-    //});
     let current_user = document.getElementById("current_user");
     current_user.innerText = resp.category;
     let current_song= document.getElementById("current_song");
@@ -36,6 +30,10 @@ let renderMessage = (message) => {
     Howler.volume(1)
   } else if ( message.body === "reload"){
     location.reload();
+  } else {
+    // Play only
+    let user = document.getElementById("current_user").innerText;
+    if( user === message.body){ Howler.volume(1); }
   }
 }
 
