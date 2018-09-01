@@ -1,0 +1,12 @@
+{application,nerves_uart,
+             [{applications,[kernel,stdlib,elixir]},
+              {description,"Discover and use UARTs and serial ports in Elixir."},
+              {modules,['Elixir.Nerves.UART','Elixir.Nerves.UART.Enumerator',
+                        'Elixir.Nerves.UART.Framing',
+                        'Elixir.Nerves.UART.Framing.FourByte',
+                        'Elixir.Nerves.UART.Framing.Line',
+                        'Elixir.Nerves.UART.Framing.Line.State',
+                        'Elixir.Nerves.UART.Framing.None',
+                        'Elixir.Nerves.UART.State']},
+              {registered,[]},
+              {vsn,"1.2.0"}]}.
