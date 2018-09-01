@@ -27,13 +27,12 @@ room.join()
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 let renderMessage = (message) => {
-  console.log( message.body);
-  if( message.body === "0"){
+  if( message.body === "start"){
     let current_song= document.getElementById("current_song").innerText;
     playSong( current_song );
-  } else if ( message.body === "1"){
+  } else if ( message.body === "stop"){
     Howler.volume(0)
-  } else if( message.body === "2") {
+  } else if( message.body === "play") {
     Howler.volume(1)
   } else if ( message.body === "reload"){
     location.reload();
