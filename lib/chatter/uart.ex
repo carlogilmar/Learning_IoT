@@ -17,13 +17,19 @@ defmodule Chatter.Uart do
 
 	# Server
 	def init(_) do
-		IO.puts "Getting uart pid"
+		IO.puts "== Getting uart pid"
 		{:ok, uart_pid} = Nerves.UART.start_link
-		IO.puts "Open port..."
+    IO.inspect uart_pid
+		IO.puts "== Open port..."
 		port = Nerves.UART.open( uart_pid, "ttyACM0", speed: 9600, active: false)
 		IO.inspect port
+    loop()
 		{:ok, uart_pid}
 	end
+
+   defp loop() do
+     send self(), :loop
+   end
 
 	def handle_call( :get_uart, _, state ) do
 		# state is the uart_pid
@@ -36,6 +42,14 @@ defmodule Chatter.Uart do
     sm = Nerves.UART.read( pid, 60000 )
     IO.inspect sm
 		{:reply, state, state}
+  end
+
+  def handle_info(:loop, state) do
+    sm = Nerves.UART.read( state, 1000 )
+    IO.puts " Leyendo uart! "
+    IO.inspect sm
+    loop()
+    {:noreply, state}
   end
 
 end
