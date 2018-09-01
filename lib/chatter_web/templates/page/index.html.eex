@@ -1,7 +1,10 @@
 <div class="row">
   <div class="col-md-12 text-center">
-    <h2> <span id="current_user"> User here</span> </h2>
+    <h2> <span id="current_user" style="font-size: 100px;"> User here</span> </h2>
     <strong> S O N G </strong><br>
     <small> <span id="current_song"> User here</span> </small>
   </div>
 </div>
+
+<!-- The actual snackbar -->
+<div id="snackbar">Some text some message..</div>
