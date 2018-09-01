@@ -1,14 +1,29 @@
 import "phoenix_html"
-
 import {Socket, Presence} from "phoenix"
 
 // Making the socket connection
-let user = document.getElementById("user").innerText
-let socket = new Socket("/socket", {params: {user: user}})
-socket.connect()
+let socket = new Socket("/socket", {params: {user: "phoenix"}});
+socket.connect();
 
 // Join and open the socket channels
-let room = socket.channel("room:lobby")
+let room = socket.channel("room:lobby");
+let current_user = " Phoenix ";
+
+// Connect to the channel
+room.join()
+  .receive("ok", resp => {
+    console.log("C O N E C T A D O", resp)
+    let sound2 = new Howl({
+      src: [ resp.song ],
+      autoplay: true,
+      loop: true,
+      volume: 0.0,
+    });
+    let current_user = document.getElementById("current_user");
+    current_user.innerText = resp.category;
+  })
+  .receive("error", resp => { console.log("Unable to join", resp) })
+
 room.on("presence_state", state => {
   console.log("==================== > presence")
   console.log(state)
@@ -22,19 +37,8 @@ room.on("presence_diff", diff => {
   presences = Presence.syncDiff( presences, diff)
   render(presences)
 })
-room.join()
-  .receive("ok", resp => {
-    console.log("Joined to Example Channel!!", resp)
-    let sound2 = new Howl({
-      src: ['http://carlogilmar.me/uno.m4a'],
-      autoplay: true,
-      loop: true,
-      volume: 0.0,
-      onend: function() {
-        console.log('Finished!');
-      } });
-  })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+
+
 
 // Getting the list of users
 let presences = {}
