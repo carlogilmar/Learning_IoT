@@ -7,7 +7,6 @@ socket.connect();
 
 // Join and open the socket channels
 let room = socket.channel("room:lobby");
-var song = " Phoenix ";
 
 // Connect to the channel
 room.join()
@@ -22,16 +21,20 @@ room.join()
 
 let renderMessage = (message) => {
   if( message.body === "start"){
+    toast( "Play Music!!!" );
     let current_song= document.getElementById("current_song").innerText;
     playSong( current_song );
   } else if ( message.body === "stop"){
+    toast( "S T O P" );
     Howler.volume(0)
   } else if( message.body === "play") {
+    toast( "P L A Y" );
     Howler.volume(1)
   } else if ( message.body === "reload"){
     location.reload();
   } else {
     // Play only
+    toast( "Play Song "+message.body );
     let user = document.getElementById("current_user").innerText;
     if( user === message.body){ Howler.volume(1); }
   }
@@ -47,3 +50,10 @@ function playSong( song ) {
 }
 
 room.on("message:new:client", message => renderMessage(message))
+
+function toast( message ) {
+  var snackbar = document.getElementById("snackbar");
+  snackbar.innerText = message;
+  snackbar.className = "show";
+  setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 3000);
+}
