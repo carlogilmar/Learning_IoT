@@ -24,21 +24,32 @@ let renderMessage = (message) => {
     toast( "Play Music!!!" );
     let current_song= document.getElementById("current_song").innerText;
     playSong( current_song );
+    playMusicLoader();
   } else if ( message.body === "stop"){
     toast( "S T O P" );
     Howler.volume(0)
+    playWaitingLoader();
   } else if( message.body === "play") {
     toast( "P L A Y" );
     Howler.volume(1)
+    playMusicLoader();
   } else if ( message.body === "reload"){
     location.reload();
   } else {
     // Play only
     toast( "Play Song "+message.body );
     let user = document.getElementById("current_user").innerText;
-    if( user === message.body){ Howler.volume(1); }
+    if( user === message.body){ Howler.volume(1); playMusicLoader(); }
   }
 }
+
+function playMusicLoader(){
+  document.getElementById("music_loader").style = "visibility: visible;";
+};
+
+function playWaitingLoader(){
+  document.getElementById("music_loader").style = "visibility: hidden;";
+};
 
 function playSong( song ) {
   let sound2 = new Howl({
