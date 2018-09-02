@@ -38,13 +38,6 @@ defmodule Chatter.Uart do
 		{:reply, state, state}
 	end
 
-  #def handle_call( :read_uart, _, state ) do
-  #  pid = state
-  #  {:ok, message_from_arduino} = Nerves.UART.read( pid, 60000 )
-  #  RoomChannel.send_broadcast( message_from_arduino )
-	#	{:reply, state, state}
-  #end
-
   def handle_info(:loop, state) do
     {:ok, message_from_arduino} = Nerves.UART.read( state, 1000 )
     RoomChannel.send_broadcast( message_from_arduino )
