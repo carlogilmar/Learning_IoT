@@ -15,23 +15,23 @@ defmodule ChatterWeb.RoomChannel do
   end
 
   def send_message_from_terminal(body) do
+    IO.puts " :: Broadcast :: << #{body} >> "
     ChatterWeb.Endpoint.broadcast "room:lobby", "message:new:client", %{body: body}
   end
 
-  def send_broadcast( _ ), do: IO.puts(" Monitoring! ")
-  def send_broadcast( "play" ), do: IO.puts(" Play !")
-  def send_broadcast( "stop" ), do: IO.puts(" stop ")
-  def send_broadcast( "49" ), do: IO.puts(" song 1 ")
-  def send_broadcast( "50" ), do: IO.puts(" song 2 ")
-  def send_broadcast( "51" ), do: IO.puts(" song 3 ")
-  def send_broadcast( "52" ), do: IO.puts(" song 4 ")
-  def send_broadcast( "53" ), do: IO.puts(" song 5 ")
-  def send_broadcast( "54" ), do: IO.puts(" song 6 ")
-  def send_broadcast( "55" ), do: IO.puts(" song 7 ")
-  def send_broadcast( "56" ), do: IO.puts(" song 8 ")
-  def send_broadcast( "65" ), do: IO.puts(" play 2!! ")
-  def send_broadcast( "66" ), do: IO.puts(" stop 2!! ")
-  def send_broadcast( "67" ), do: IO.puts(" RELOAD!!")
+  def send_broadcast( "play" ), do: send_message_from_terminal("start")
+  def send_broadcast( "stop" ), do: send_message_from_terminal("stop")
+  def send_broadcast( "49" ), do: send_message_from_terminal("A")
+  def send_broadcast( "50" ), do: send_message_from_terminal("B")
+  def send_broadcast( "51" ), do: send_message_from_terminal("C")
+  def send_broadcast( "52" ), do: send_message_from_terminal("D")
+  def send_broadcast( "53" ), do: send_message_from_terminal("E")
+  def send_broadcast( "54" ), do: send_message_from_terminal("F")
+  def send_broadcast( "55" ), do: send_message_from_terminal("G")
+  def send_broadcast( "56" ), do: send_message_from_terminal("H")
+  def send_broadcast( "65" ), do: send_message_from_terminal("start")
+  def send_broadcast( "66" ), do: send_message_from_terminal("stop")
+  def send_broadcast( "67" ), do: send_message_from_terminal("reload")
   def send_broadcast( _ ), do: IO.puts(" Monitoring UART! ")
 
 end
