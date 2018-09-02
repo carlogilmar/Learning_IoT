@@ -22,6 +22,8 @@ int CLK = 11;
 int incomingByte = 0;
 int sensorPin = 0;
 
+int photoState = 0;// 0 apagado 1 prendido
+
 LedControl lc=LedControl(DIN,CLK,CS,0);
 
     //https://gurgleapps.com/tools/matrix
@@ -67,25 +69,33 @@ void loop(){
     
    if (Serial.available() > 0) {
     incomingByte = Serial.read(); // read the incoming byte:
-     Serial.print(incomingByte);
-    if( incomingByte == 49 ) { playMessage(); }
-    if( incomingByte == 50 ) { playHi(); }
-    if( incomingByte == 51 ) { playSong1(); }
-  }
+    if( incomingByte == 49 ) { playPacman(); }
+   }
   
   if (key){
     Serial.println(key);
   }
+
   
   if( valueAnalog < 500 ){
-    // luz apagada
-    //Serial.println("1");
-    playPacman();
+    //Luz apagada
+    if( photoState == 1 ){
+      photoState = 0;   
+      Serial.println("play");
+      //playPacman();
+    }
+    
+    //playSong1();
+    // Prender más LEDS!
+    
   } else {
-    // luz encendida 
-    //Serial.println("0"); 
+    // luz encendida
+    if( photoState == 0 ){
+      photoState = 1;
+      Serial.println("stop");  
+    }   
   }
-
+  
 }
 
 void playMessage(){
