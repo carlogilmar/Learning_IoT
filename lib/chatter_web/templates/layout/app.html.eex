@@ -22,7 +22,7 @@
 			<%= render @view_module, @view_template, assigns %>
 			</main>
 
-			<div id="music_loader" class="row">
+			<div id="music_loader" class="row" style="visibility: hidden;">
 				<div class="col-md-12" style="display: flex;justify-content: center; align-items: center;">
 
 					<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 1000">
