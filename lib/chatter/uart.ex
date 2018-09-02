@@ -23,6 +23,7 @@ defmodule Chatter.Uart do
     IO.inspect uart_pid
 		IO.puts "== Open port..."
 		port = Nerves.UART.open( uart_pid, "ttyACM0", speed: 9600, active: false)
+    Nerves.UART.configure(uart_pid, framing: {Nerves.UART.Framing.Line, separator: "\r\n"})
 		IO.inspect port
     loop()
 		{:ok, uart_pid}
