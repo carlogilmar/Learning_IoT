@@ -18,6 +18,7 @@ defmodule ChatterWeb.RoomChannel do
     ChatterWeb.Endpoint.broadcast "room:lobby", "message:new:client", %{body: body}
   end
 
+  def send_broadcast( _ ), do: IO.puts(" Monitoring! ")
   def send_broadcast( "play" ), do: IO.puts(" Play !")
   def send_broadcast( "stop" ), do: IO.puts(" stop ")
   def send_broadcast( "49" ), do: IO.puts(" song 1 ")
@@ -31,5 +32,6 @@ defmodule ChatterWeb.RoomChannel do
   def send_broadcast( "65" ), do: IO.puts(" play 2!! ")
   def send_broadcast( "66" ), do: IO.puts(" stop 2!! ")
   def send_broadcast( "67" ), do: IO.puts(" RELOAD!!")
+  def send_broadcast( _ ), do: IO.puts(" Monitoring UART! ")
 
 end
