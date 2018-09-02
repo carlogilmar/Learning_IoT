@@ -1,6 +1,7 @@
 defmodule Chatter.Uart do
 
 	use GenServer
+  alias ChatterWeb.RoomChannel
 
 	# Client
 	def start_link() do
@@ -36,18 +37,16 @@ defmodule Chatter.Uart do
 		{:reply, state, state}
 	end
 
-	def handle_call( :read_uart, _, state ) do
-    pid = state
-    IO.puts " UART   R E A D I N G"
-    sm = Nerves.UART.read( pid, 60000 )
-    IO.inspect sm
-		{:reply, state, state}
-  end
+  #def handle_call( :read_uart, _, state ) do
+  #  pid = state
+  #  {:ok, message_from_arduino} = Nerves.UART.read( pid, 60000 )
+  #  RoomChannel.send_broadcast( message_from_arduino )
+	#	{:reply, state, state}
+  #end
 
   def handle_info(:loop, state) do
-    sm = Nerves.UART.read( state, 1000 )
-    IO.puts " Leyendo uart! "
-    IO.inspect sm
+    {:ok, message_from_arduino} = Nerves.UART.read( state, 1000 )
+    RoomChannel.send_broadcast( message_from_arduino )
     loop()
     {:noreply, state}
   end
