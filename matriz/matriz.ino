@@ -24,6 +24,16 @@ int sensorPin = 0;
 
 int photoState = 0;// 0 apagado 1 prendido
 
+const int led1 = 22;
+const int led2 = 23;
+const int led3 = 24;
+const int led4 = 25;
+
+const int led5 = 26;
+const int led6 = 27;
+const int led7 = 28;
+const int led8 = 29;
+
 LedControl lc=LedControl(DIN,CLK,CS,0);
 
     //https://gurgleapps.com/tools/matrix
@@ -60,6 +70,14 @@ void setup(){
  lc.shutdown(0,false);       //The MAX72XX is in power-saving mode on startup
  lc.setIntensity(0,15);      // Set the br1ightness to maximum value
  lc.clearDisplay(0);         // and clear the display
+ pinMode( led1, OUTPUT);
+ pinMode( led2, OUTPUT);
+ pinMode( led3, OUTPUT);
+ pinMode( led4, OUTPUT);
+ pinMode( led5, OUTPUT);
+ pinMode( led6, OUTPUT);
+ pinMode( led7, OUTPUT);
+ pinMode( led8, OUTPUT);
 }
 
 void loop(){ 
@@ -82,20 +100,61 @@ void loop(){
     if( photoState == 1 ){
       photoState = 0;   
       Serial.println("play");
-      //playPacman();
     }
     
-    //playSong1();
-    // Prender más LEDS!
+    playSong1();
+    playLeds
+    ();
+    //digitalWrite(led1 , HIGH);
     
   } else {
     // luz encendida
     if( photoState == 0 ){
       photoState = 1;
-      Serial.println("stop");  
-    }   
+      Serial.println("stop");
+      leds_off();  
+    }  
+    //digitalWrite(ledPin , LOW);
   }
   
+}
+
+void playLeds(){
+  leds_on();
+  delay(50);
+  leds_off();
+  delay(50);
+  leds_on();
+  delay(50);
+  leds_off();
+  delay(50);
+  leds_on();
+  delay(50);
+  leds_off();
+  delay(50);
+}
+
+
+void leds_on(){
+  digitalWrite(led1 , HIGH);
+  digitalWrite(led2 , HIGH);
+  digitalWrite(led3 , HIGH);
+  digitalWrite(led4 , HIGH);
+  digitalWrite(led5 , HIGH);
+  digitalWrite(led6 , HIGH);
+  digitalWrite(led7 , HIGH);
+  digitalWrite(led8 , HIGH);
+}
+
+void leds_off(){
+  digitalWrite(led1 , LOW);
+  digitalWrite(led2 , LOW);
+  digitalWrite(led3 , LOW);
+  digitalWrite(led4 , LOW);
+  digitalWrite(led5 , LOW);
+  digitalWrite(led6 , LOW);
+  digitalWrite(led7 , LOW);
+  digitalWrite(led8 , LOW);
 }
 
 void playMessage(){
