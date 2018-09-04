@@ -39,7 +39,7 @@ let renderMessage = (message) => {
     // Play only
     toast( "Play Song "+message.body );
     let user = document.getElementById("current_user").innerText;
-    if( user === message.body){ Howler.volume(1); playMusicLoader(); }
+    if( user === message.body){ Howler.volume(1); playMusicLoader(); } else { toast( message.body ); }
   }
 }
 
