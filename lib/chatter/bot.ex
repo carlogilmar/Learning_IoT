@@ -12,7 +12,7 @@ defmodule Chatter.Bot do
 	def handle({:text, text, _}, cnt) do
 		IO.puts "Bot respondiendo..."
 		IO.inspect text
-    RoomChannel.send_broadcast text
+    RoomChannel.send_message_from_terminal text
 		cnt |> answer(" Aprendiendo IoT Primeros Pasos Demo:: Hola, ya te atiendo con Elixir 🤖")
 	end
 
