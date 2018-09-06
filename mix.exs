@@ -41,7 +41,8 @@ defmodule Chatter.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:nerves_uart, "~> 1.2"}
+      {:nerves_uart, "~> 1.2"},
+      {:ex_gram, "~> 0.5.0-rc6"}
     ]
   end
 
