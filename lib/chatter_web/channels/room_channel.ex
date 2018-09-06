@@ -8,8 +8,7 @@ defmodule ChatterWeb.RoomChannel do
   def join("room:lobby", _, socket) do
     Logger.info ":: Join to room:lobby ::", ansi_color: :green
     { _, current_user} = Director.suscribe()
-    play_pacman_in_arduino()
-    send self(), :after_join
+    #play_pacman_in_arduino()
     {:ok, current_user, socket}
   end
 
@@ -54,8 +53,9 @@ defmodule ChatterWeb.RoomChannel do
         send_message_from_terminal("stop")
       "68" ->
         send_message_from_terminal("reload")
-      _ ->
+      message ->
         Logger.info ":: Monitoring UART ::", ansi_color: :green
+        send_message_from_terminal( message )
     end
   end
 
