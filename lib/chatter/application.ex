@@ -7,7 +7,6 @@ defmodule Chatter.Application do
     children = [
       supervisor(ExGram, []),
       supervisor(ChatterWeb.Endpoint, []),
-      supervisor(ChatterWeb.Presence, []),
       supervisor(Chatter.Bot, [:polling, ExGram.Config.get(:ex_gram, :token) ]),
       supervisor(Chatter.Uart, []),
 			supervisor(Chatter.Director, [])
