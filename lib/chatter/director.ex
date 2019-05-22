@@ -3,14 +3,14 @@ defmodule Chatter.Director do
   use GenServer
 
   @songs [
-    %{"song" => "http://carlogilmar.xyz/a.m4a", "category" => "A"},
-    %{"song" => "http://carlogilmar.xyz/b.m4a", "category" => "B"},
-    %{"song" => "http://carlogilmar.xyz/c.m4a", "category" => "C"},
-    %{"song" => "http://carlogilmar.xyz/d.m4a", "category" => "D"},
-    %{"song" => "http://carlogilmar.xyz/e.m4a", "category" => "E"},
-    %{"song" => "http://carlogilmar.xyz/f.m4a", "category" => "F"},
-    %{"song" => "http://carlogilmar.xyz/g.m4a", "category" => "G"},
-    %{"song" => "http://carlogilmar.xyz/h.m4a", "category" => "H"}
+    %{"song" => "http://carlogilmar.xyz/uno.m4a", "category" => "A"},
+    %{"song" => "http://carlogilmar.xyz/dos.m4a", "category" => "B"},
+    %{"song" => "http://carlogilmar.xyz/tres.m4a", "category" => "C"},
+    %{"song" => "http://carlogilmar.xyz/cuatro.m4a", "category" => "D"},
+    %{"song" => "http://carlogilmar.xyz/cinco.m4a", "category" => "E"},
+    %{"song" => "http://carlogilmar.xyz/seis.m4a", "category" => "F"},
+    %{"song" => "http://carlogilmar.xyz/siete.m4a", "category" => "G"},
+    %{"song" => "http://carlogilmar.xyz/ocho.m4a", "category" => "H"}
   ]
 
   def start_link() do
