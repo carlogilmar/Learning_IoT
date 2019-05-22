@@ -3,6 +3,13 @@
     <h2> <span id="current_user" style="font-size: 100px;"> Song </span> </h2>
     <strong> S O N G </strong><br>
     <small> <span id="current_song"> song </span> </small>
+    <br><span class="badge badge-secondary" id="current_state">Loading... 🌚 </span>
+    <br><br><small> Please enable your audio device and then touch the button.</small>
+    <div id="button">
+    <br><button type="button" onclick="ready()" class="btn btn-primary" id="button">Touch me!</button>
+    </div>
+    <div id="ready">
+    </div>
   </div>
 </div>
 
