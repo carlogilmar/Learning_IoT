@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-		<title> Aprendiendo IoT: Primeros Pasos!</title>
+		<title> Campus Experts Meetup Berlin </title>
 		<link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 	</head>
 
@@ -15,7 +15,10 @@
 		<div class="container">
 
 			  <div class="col-md-12 text-center">
-          <strong>A P R E N D I E N D O &nbsp; I O T &nbsp; P R I M E R O S &nbsp; P A S O S 🤖 </strong>
+          <strong> E M E R G I N G &nbsp; T E C H N O L O G I E S </strong>
+          <br> <p> for transform <b> People Interactions </b> </p>
+          <br> By @carlogilmar
+          <br> <b>Berlin, 2019</b>
 			  </div>
 
 			<main role="main">

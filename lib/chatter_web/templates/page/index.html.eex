@@ -8,7 +8,7 @@
     <div id="button">
     <br><button type="button" onclick="ready()" class="btn btn-primary" id="button">Touch me!</button>
     </div>
-    <div id="ready">
+    <br><div id="ready">
     </div>
   </div>
 </div>
