@@ -16,6 +16,15 @@ room.join()
     current_user.innerText = resp.category;
     let current_song= document.getElementById("current_song");
     current_song.innerText = resp.song;
+    let sound = new Howl({
+      src: [ resp.song ],
+      autoplay: true,
+      loop: true,
+      volume: 1
+    });
+    sound.once('load', () => { document.getElementById("current_state").innerText = "Ready  🌝 " } );
+    sound.play();
+    Howler.volume(0);
   })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
@@ -23,7 +32,7 @@ let renderMessage = (message) => {
   if( message.body === "start"){
     toast( "Play Music!!!" );
     let current_song= document.getElementById("current_song").innerText;
-    playSong( current_song );
+    Howler.volume(1)
     playMusicLoader();
   } else if ( message.body === "stop"){
     toast( "S T O P" );
@@ -68,3 +77,6 @@ function toast( message ) {
   snackbar.className = "show";
   setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 3000);
 }
+window.ready = function ready(){
+  document.getElementById("ready").innerText = "Campus Experts Meetup Berlin 2019"
+};
